@@ -1,6 +1,6 @@
 ![](https://i.imgur.com/xG74tOh.png)
 
-# Desafio | Full-stack - Módulo 4
+# Desafio | Back-end e Front-end - Módulo 4
 
 ## Como entregar?
 
