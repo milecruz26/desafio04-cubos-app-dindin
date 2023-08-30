@@ -19,7 +19,7 @@ O sistema trata-se de uma aplicação para controle de finanças pessoais. As fu
 - Edição de uma transação `*`
 - Exclusão de uma transação `*`
 - Listagem de transações `*`
-- Resumo das transações `*` (O valor de entradas, saídas e saldo é obtido por meio do endpoint de extrato da **API**)
+- Resumo das transações `*`
 - Permitir ordenar a tabela por data (`Extra`)
 - Permitir o usuário filtrar a tabela por categoria (`Extra`)
 - Editar perfil de usuário (`Extra`)
