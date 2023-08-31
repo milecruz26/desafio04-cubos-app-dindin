@@ -46,11 +46,11 @@ main {
   height: 47rem;
 }
 
-table {
+.table table {
   border-collapse: collapse;
 }
 
-thead {
+.table thead {
   height: 3.625rem;
   width: 60.25rem;
   background: #FAFAFA;
@@ -65,7 +65,7 @@ thead {
   line-height: normal;
 }
 
-tbody {
+.table tbody {
   color: #000;
   text-align: center;
   font-family: var(--font-family-lato);
@@ -75,7 +75,7 @@ tbody {
   line-height: normal;
 }
 
-tr,
+.table tr,
 td {
   width: 60.25rem;
   height: 3.625rem;
@@ -83,11 +83,11 @@ td {
 
 }
 
-td {
+.table td {
   border-bottom: 1px solid #E0E0E0;
 }
 
-td:nth-child(1) {
+.table td:nth-child(1) {
   font-weight: 700;
 }
 
@@ -158,4 +158,19 @@ td {
 .table-resume .saldo {
   font-weight: 700;
   font-size: 0.875rem;
+}
+
+.container button {
+  width: 14.75rem;
+  height: 2.875rem;
+  border-radius: 0.3125rem;
+  background-color: var(--color-purple);
+  border: none;
+  cursor: pointer;
+
+  color: #FFF;
+  font-family: var(--font-family-rubik);
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 700;
 }

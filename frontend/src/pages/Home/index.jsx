@@ -30,8 +30,8 @@ export const Home = () => {
                   <th>Descrição</th>
                   <th>Categoria</th>
                   <th>Valor</th>
-                  <th></th>
-                  <th></th>
+                  <th style={{ width: '5rem' }}></th>
+                  <th style={{ width: '5rem' }}></th>
                 </tr>
               </thead>
               <tbody>
@@ -41,8 +41,12 @@ export const Home = () => {
                   <td>Venda dos brigadeiros</td>
                   <td>Pix</td>
                   <td>R$ 100,00</td>
-                  <td className='edit-icon'><img src={EditIcon} alt="" /></td>
-                  <td className='delete-icon'><img src={TrashIcon} alt="" /></td>
+                  <td className='edit-icon'>
+                    <img src={EditIcon} alt="editar"
+                      style={{ cursor: 'pointer' }} />
+                    <img src={TrashIcon} alt="deletar"
+                      style={{ marginLeft: '13px', cursor: 'pointer' }} />
+                  </td>
                 </tr>
                 <tr>
                   <td>01/09/21</td>
@@ -50,8 +54,12 @@ export const Home = () => {
                   <td>Venda dos brigadeiros</td>
                   <td>Pix</td>
                   <td>R$ 100,00</td>
-                  <td className='edit-icon'><img src={EditIcon} alt="" /></td>
-                  <td className='delete-icon'><img src={TrashIcon} alt="" /></td>
+                  <td className='edit-icon'>
+                    <img src={EditIcon} alt="editar"
+                      style={{ cursor: 'pointer' }} />
+                    <img src={TrashIcon} alt="deletar"
+                      style={{ marginLeft: '13px', cursor: 'pointer' }} />
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -80,7 +88,7 @@ export const Home = () => {
             <button>Adicionar Registro</button>
           </div>
         </div>
-      </main>
-    </div>
+      </main >
+    </div >
   )
 }
