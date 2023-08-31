@@ -13,13 +13,11 @@
 }
 
 header {
-
-  margin: 0px auto;
+  margin: 0 auto;
   padding: 3rem 0;
-  height: 10rem;
+  height: 9rem;
   width: 90rem;
 }
-
 
 
 .body {
@@ -33,7 +31,6 @@ header {
 }
 
 main {
-
   margin: 0px auto;
   width: 90rem;
   display: flex;
@@ -41,66 +38,19 @@ main {
   align-items: center;
 }
 
-main div {
-
+.cadastro {
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
 
-}
+  width: 32.0625rem;
+  height: 45rem;
 
-.texto-principal {
-
-  height: 350px;
-  width: 614px;
-  gap: 33px
-}
-
-h1 {
-  color: #FFF;
-  font-family: var(--font-family-rubik);
-  font-size: 52px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
-p {
-  color: #FFF;
-  font-family: var(--font-family-rubik);
-  font-size: 28px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-span {
-  color: var(--color-purple);
-}
-
-.texto-principal button {
-  width: 284px;
-  height: 48px;
-  border-radius: 5px;
-  background-color: var(--color-purple);
-  border: none;
-
-  color: #FFF;
-  font-family: var(--font-family-rubik);
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
-}
-
-.area-login {
-  height: 535px;
-  width: 513px;
   background-color: #fff;
-  display: flex;
-  flex-direction: column;
 }
 
-.area-login h3 {
-  margin: 50px auto;
+.cadastro h3 {
+  margin: 40px auto;
   color: var(--color-purple);
   font-family: var(--font-family-rubik);
   font-size: 28px;
@@ -110,14 +60,13 @@ span {
 }
 
 form {
-
-  height: 380px;
-  width: 449px;
+  width: 28.125rem;
+  min-height: 34rem;
 
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  gap: 20px
+  gap: 10px
 }
 
 label {
@@ -136,13 +85,12 @@ input {
   background: #FFF;
   width: 449px;
   height: 63px;
-  flex-shrink: 0;
 }
 
 form button {
-  width: 449px;
-  margin-top: 50px;
-  height: 52px;
+  width: 28.0625rem;
+  height: 3.0625rem;
+
   border-radius: 5px;
   border: none;
 
@@ -151,5 +99,21 @@ form button {
   font-weight: 700;
   font-size: 14px;
   color: #fff;
+  cursor: pointer;
+
+}
+
+p,
+span {
+  color: var(--color-purple);
+  text-align: center;
+  font-family: var(--font-family-lato);
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+span {
   cursor: pointer;
 }
