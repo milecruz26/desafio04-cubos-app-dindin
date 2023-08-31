@@ -1,7 +1,13 @@
+import { useState } from 'react';
 import './styles.css'
+import { ModalRegister } from '../ModalRegister';
+
 
 
 export const ResumeTable = () => {
+  const [addRegister, setAddRegister] = useState(false)
+
+
   return (
 
     <div className='container'>
@@ -24,7 +30,13 @@ export const ResumeTable = () => {
           </tr>
         </table>
       </div>
-      <button>Adicionar Registro</button>
+      <button
+        onClick={() => setAddRegister(true)}
+      >Adicionar Registro</button>
+      <ModalRegister
+        addRegister={addRegister}
+        setAddRegister={setAddRegister}
+      />
     </div>
 
   )
