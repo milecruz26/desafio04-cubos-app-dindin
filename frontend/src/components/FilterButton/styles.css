@@ -1,0 +1,30 @@
+.filter-button {
+  width: 80px;
+  height: 30px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+  border-radius: 10px;
+  background: #FAFAFA;
+  box-shadow: 0px 2px 11px 0px rgba(0, 0, 0, 0.10);
+
+  cursor: pointer;
+}
+
+.filter-button img {
+  width: 14px;
+  height: 14px;
+}
+
+.filter-button strong {
+  color: #000;
+  font-family: var(--font-family-lato);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
