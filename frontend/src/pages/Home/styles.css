@@ -6,13 +6,6 @@
   --color-gray: #484848
 }
 
-header {
-  margin: 0 auto 20px auto;
-  height: 8rem;
-  width: 90rem;
-}
-
-
 .background {
   background: linear-gradient(90deg, #05EDE3 0.02%, #645FFB 99.63%);
 
