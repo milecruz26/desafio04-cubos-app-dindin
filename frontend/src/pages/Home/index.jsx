@@ -1,8 +1,9 @@
 import './styles.css'
+import '../../global.css'
 import { Tabela } from '../../components/Tabela'
 import { ResumeTable } from '../../components/ResumeTable'
 import { FilterButton } from '../../components/FilterButton'
-import { Header } from '../../components/Header'
+import { HeaderLogo } from '../../components/HeaderLogo'
 
 export const Home = () => {
 
@@ -11,9 +12,9 @@ export const Home = () => {
 
     <div className='background'>
 
-      <Header />
+      <HeaderLogo />
 
-      <main>
+      <main className='main-home'>
         <div className='container-description'>
           <FilterButton />
 

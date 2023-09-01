@@ -1,61 +1,15 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-:root {
-  --font-family-lato: 'Lato', sans-serif;
-  --font-family-roboto: 'Roboto', sans-serif;
-  --font-family-rubik: 'Rubik', sans-serif;
-  --color-purple: #7978D9;
-  --color-gray: #484848
-}
-
-header {
-
-  margin: 0px auto;
-  padding: 3rem 0;
-  height: 10rem;
-  width: 90rem;
-}
-
-
-
-.body {
-
-  background: url('../../assets/wallpaper.svg'), lightgray 50%;
-  background-size: cover;
-  background-repeat: no-repeat;
-
-  min-height: 100vh;
-  width: 100%;
-}
-
-main {
-
-  margin: 0px auto;
-  width: 90rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 main div {
-
   display: flex;
   flex-direction: column;
-
 }
 
 .texto-principal {
-
   height: 350px;
   width: 614px;
   gap: 33px
 }
 
-h1 {
+.texto-principal h1 {
   color: #FFF;
   font-family: var(--font-family-rubik);
   font-size: 52px;
@@ -64,7 +18,7 @@ h1 {
   line-height: normal;
 }
 
-p {
+.texto-principal p {
   color: #FFF;
   font-family: var(--font-family-rubik);
   font-size: 28px;
@@ -73,7 +27,7 @@ p {
   line-height: normal;
 }
 
-span {
+.texto-principal strong {
   color: var(--color-purple);
 }
 

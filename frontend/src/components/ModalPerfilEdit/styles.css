@@ -1,22 +1,14 @@
-:root {
-  --font-family-lato: 'Lato', sans-serif;
-  --font-family-roboto: 'Roboto', sans-serif;
-  --font-family-rubik: 'Rubik', sans-serif;
-  --color-purple: #7978D9;
-  --color-gray: #484848
-}
-
-.container-modal {
+.container-background {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
+
 }
 
-.container-form {
+.container-form-edit {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -24,33 +16,20 @@
   width: 611px;
   height: 770px;
   background-color: white;
-  padding: 50px;
-  z-index: 1001;
+  padding: 60px;
+
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 20px;
   gap: 25px;
 
   display: flex;
   flex-direction: column;
-  align-content: center;
-  align-items: center;
-
-}
-
-.formulario {
-  height: 879px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
 }
 
 .line-title {
-
   display: flex;
   justify-content: space-between;
-  flex-direction: row;
-  align-items: center;
-  width: 489px;
+  margin-top: 10px;
 }
 
 .line-title h1 {
@@ -63,27 +42,21 @@
 }
 
 
-form {
-  display: flex;
-  flex-direction: column;
-
-  text-align: left;
+.form-edit {
   width: 489px;
   gap: 10px;
 }
 
-label {
+.form-edit label {
   margin-top: 10px;
   color: #484848;
   font-family: var(--font-family-rubik);
   font-size: 24px;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
 }
 
-form input {
-  padding-left: 20px;
+.form-edit input {
+  padding-left: 10px;
   width: 485px;
   height: 63.486px;
   border-radius: 5px;
@@ -96,7 +69,7 @@ form input {
 
 }
 
-form button {
+.form-edit button {
   margin: 35px auto;
   width: 236px;
   height: 42px;

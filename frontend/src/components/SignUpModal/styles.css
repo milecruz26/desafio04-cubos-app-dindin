@@ -1,0 +1,79 @@
+.cadastro {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+
+  width: 32.0625rem;
+  height: 45rem;
+
+  background-color: #fff;
+}
+
+.cadastro h3 {
+  margin: 40px auto;
+  color: var(--color-purple);
+  font-family: var(--font-family-rubik);
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.form-signup {
+  width: 28.125rem;
+  min-height: 34rem;
+
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 10px
+}
+
+.form-signup label {
+
+  color: var(--color-gray);
+  font-family: var(--font-family-rubik);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.form-signup input {
+  border-radius: 5px;
+  border: 1px solid #555;
+  background: #FFF;
+  width: 449px;
+  height: 63px;
+}
+
+.form-signup button {
+  width: 28.0625rem;
+  height: 3.0625rem;
+
+  border-radius: 5px;
+  border: none;
+
+  background: var(--color-purple);
+  font-family: var(--font-family-rubik);
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+  cursor: pointer;
+
+}
+
+.cadastro p,
+span {
+  color: var(--color-purple);
+  text-align: center;
+  font-family: var(--font-family-lato);
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.cadastro span {
+  cursor: pointer;
+}

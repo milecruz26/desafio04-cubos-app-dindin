@@ -1,17 +1,17 @@
-import Logo from '../../assets/logo.svg'
+import '../../global.css'
 import './styles.css'
+import { HeaderLogo } from '../../components/HeaderLogo'
 
 export const Login = () => {
   return (
-    <div className='body'>
-      <header className='container'>
-        <img src={Logo} alt="logo" />
-      </header>
+    <div className='body-login-signup'>
+
+      <HeaderLogo />
 
       <main>
 
         <div className='texto-principal'>
-          <h1>Controle suas <span>finanças</span>, sem planilha chata.</h1>
+          <h1>Controle suas <strong>finanças</strong>, sem planilha chata.</h1>
           <p>Organizar as suas finanças nunca foi tão fácil, com o DINDIN, você tem tudo num único lugar e em um clique de distância.</p>
           <button>Cadastre-se</button>
         </div>

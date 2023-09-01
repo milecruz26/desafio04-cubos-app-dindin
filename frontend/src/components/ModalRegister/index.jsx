@@ -33,7 +33,7 @@ export const ModalRegister = ({ addRegister, setAddRegister }) => {
                   Saída
                 </button>
               </div>
-              <form action="">
+              <form action="" className='form-register'>
                 <label htmlFor="">Valor</label>
                 <input type="text" />
 

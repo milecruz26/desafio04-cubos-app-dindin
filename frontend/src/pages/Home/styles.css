@@ -1,17 +1,8 @@
-:root {
-  --font-family-lato: 'Lato', sans-serif;
-  --font-family-roboto: 'Roboto', sans-serif;
-  --font-family-rubik: 'Rubik', sans-serif;
-  --color-purple: #7978D9;
-  --color-gray: #484848
-}
-
 .background {
   background: linear-gradient(90deg, #05EDE3 0.02%, #645FFB 99.63%);
-
 }
 
-main {
+.main-home {
   margin: 0 auto;
   width: 100%;
   height: 70vh;

@@ -1,11 +1,3 @@
-:root {
-  --font-family-lato: 'Lato', sans-serif;
-  --font-family-roboto: 'Roboto', sans-serif;
-  --font-family-rubik: 'Rubik', sans-serif;
-  --color-purple: #7978D9;
-  --color-gray: #484848
-}
-
 .container-modal {
   position: fixed;
   top: 0;
@@ -91,7 +83,7 @@
   cursor: pointer;
 }
 
-form {
+.form-register {
   display: flex;
   flex-direction: column;
 
@@ -100,7 +92,7 @@ form {
   gap: 10px;
 }
 
-label {
+.form-register label {
   margin-top: 10px;
   color: #484848;
   font-family: var(--font-family-rubik);
@@ -110,7 +102,7 @@ label {
   line-height: normal;
 }
 
-form input {
+.form-register input {
   width: 485px;
   height: 63.486px;
   border-radius: 5px;
@@ -118,7 +110,7 @@ form input {
   background: #FFF;
 }
 
-select {
+.form-register select {
   width: 485px;
   padding: 20px;
   border-radius: 5px;
@@ -132,7 +124,7 @@ select {
   line-height: normal;
 }
 
-option {
+.form-register option {
   padding: 20px 0 0 16px;
   width: 485px;
   height: 90px;
@@ -145,7 +137,7 @@ option {
   line-height: normal;
 }
 
-form button {
+.form-register button {
   margin: 35px auto;
   width: 236px;
   height: 42px;

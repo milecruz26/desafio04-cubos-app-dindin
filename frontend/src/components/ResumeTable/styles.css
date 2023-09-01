@@ -16,7 +16,14 @@
 
 }
 
-h2 {
+.table-resume {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+}
+
+.table-resume h2 {
   height: 2rem;
   color: #2F2F2F;
   font-family: var(--font-family-rubik);
@@ -24,13 +31,6 @@ h2 {
   font-style: normal;
   font-weight: 700;
   line-height: 21.33px;
-}
-
-.table-resume {
-  margin: 1rem;
-  display: flex;
-  flex-direction: column;
-  text-align: justify;
 }
 
 .table-resume hr {

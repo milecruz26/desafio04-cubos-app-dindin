@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import './styles.css'
+import './global.css'
 import { BrowserRouter } from "react-router-dom";
 import { MainRoutes } from "./MainRoutes";
 ReactDOM.createRoot(document.getElementById("root")).render(
