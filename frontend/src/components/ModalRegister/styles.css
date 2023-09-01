@@ -5,7 +5,6 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
 }
 
 .container-form {
@@ -16,28 +15,17 @@
   width: 611px;
   height: 879px;
   background-color: white;
-  padding: 50px;
-  z-index: 1001;
+  padding: 60px;
+
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 20px;
-  gap: 25px;
+  gap: 30px;
 
   display: flex;
   flex-direction: column;
-  align-content: center;
-  align-items: center;
-
-}
-
-.formulario {
-  height: 879px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
 }
 
 .line-title {
-
   display: flex;
   justify-content: space-between;
   flex-direction: row;
@@ -49,13 +37,10 @@
   color: #000;
   font-family: var(--font-family-rubik);
   font-size: 36px;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
 }
 
 .buttons-register {
-
   display: flex;
   align-items: center;
   flex-direction: row;
@@ -67,15 +52,11 @@
 .buttons-register button {
   width: 244.5px;
   height: 56px;
-  flex-shrink: 0;
 
   color: #FFF;
-  text-align: center;
   font-family: var(--font-family-rubik);
   font-size: 14px;
-  font-style: normal;
   font-weight: 700;
-  line-height: normal;
   background: #B9B9B9;
   border-radius: 5px;
   border: none;
@@ -84,10 +65,6 @@
 }
 
 .form-register {
-  display: flex;
-  flex-direction: column;
-
-  text-align: left;
   width: 489px;
   gap: 10px;
 }
@@ -103,43 +80,38 @@
 }
 
 .form-register input {
+  padding-left: 10px;
   width: 485px;
   height: 63.486px;
   border-radius: 5px;
   border: 1px solid #555;
   background: #FFF;
+
+  font-family: var(--font-family-rubik);
+  font-size: 18px;
+  font-weight: 400;
 }
 
 .form-register select {
   width: 485px;
-  padding: 20px;
+  padding: 20px 0 20px 10px;
+
   border-radius: 5px;
   border: 1px solid #555;
-  background: #FFF;
-  line-height: 20px;
-  font-family: var(--font-family-rubik);
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
 
-.form-register option {
-  padding: 20px 0 0 16px;
-  width: 485px;
-  height: 90px;
-  color: #484848;
-  line-height: 20px;
+  background: #FFF;
+
   font-family: var(--font-family-rubik);
   font-size: 16px;
-  font-style: normal;
   font-weight: 400;
-  line-height: normal;
 }
 
 .form-register button {
-  margin: 35px auto;
+  margin: 50px auto;
   width: 236px;
   height: 42px;
   flex-shrink: 0;
+  color: #FFF;
+  font-size: 14px;
+
 }
