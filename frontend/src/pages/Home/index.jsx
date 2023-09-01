@@ -3,8 +3,6 @@ import { Tabela } from '../../components/Tabela'
 import { ResumeTable } from '../../components/ResumeTable'
 import { FilterButton } from '../../components/FilterButton'
 import { Header } from '../../components/Header'
-import { ModalRegister } from '../../components/ModalRegister'
-import { useState } from 'react'
 
 export const Home = () => {
 

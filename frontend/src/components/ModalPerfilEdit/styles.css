@@ -22,7 +22,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 611px;
-  height: 879px;
+  height: 770px;
   background-color: white;
   padding: 50px;
   z-index: 1001;
@@ -62,34 +62,6 @@
   line-height: normal;
 }
 
-.buttons-register {
-
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  margin: 0 auto;
-  width: 489px;
-  height: 56px;
-}
-
-.buttons-register button {
-  width: 244.5px;
-  height: 56px;
-  flex-shrink: 0;
-
-  color: #FFF;
-  text-align: center;
-  font-family: var(--font-family-rubik);
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  background: #B9B9B9;
-  border-radius: 5px;
-  border: none;
-
-  cursor: pointer;
-}
 
 form {
   display: flex;
@@ -111,38 +83,17 @@ label {
 }
 
 form input {
+  padding-left: 20px;
   width: 485px;
   height: 63.486px;
   border-radius: 5px;
   border: 1px solid #555;
   background: #FFF;
-}
 
-select {
-  width: 485px;
-  padding: 20px;
-  border-radius: 5px;
-  border: 1px solid #555;
-  background: #FFF;
-  line-height: 20px;
   font-family: var(--font-family-rubik);
-  font-size: 16px;
-  font-style: normal;
+  font-size: 18px;
   font-weight: 400;
-  line-height: normal;
-}
 
-option {
-  padding: 20px 0 0 16px;
-  width: 485px;
-  height: 90px;
-  color: #484848;
-  line-height: 20px;
-  font-family: var(--font-family-rubik);
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
 }
 
 form button {

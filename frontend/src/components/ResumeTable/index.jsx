@@ -4,8 +4,10 @@ import { ModalRegister } from '../ModalRegister';
 
 
 
+
 export const ResumeTable = () => {
   const [addRegister, setAddRegister] = useState(false)
+
 
 
   return (
