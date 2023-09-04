@@ -1,9 +1,18 @@
 import './styles.css'
 import CloseIcon from '../../assets/close-icon.svg'
+import { useState } from 'react'
 
 export const ModalRegister = ({ addRegister, setAddRegister }) => {
+  const [click, setClick] = useState(false)
+  const handleClickButtonRegister = () => {
+    if (!click) {
+      return setClick(true)
 
-
+    }
+    if (click) {
+      return setClick(false)
+    }
+  }
   return (
     <>
       {addRegister &&
@@ -21,16 +30,20 @@ export const ModalRegister = ({ addRegister, setAddRegister }) => {
                 onClick={() => setAddRegister(false)}
               />
             </div>
+
             <div className='buttons-register'>
-              <button type="button" style={{ backgroundColor: '#3A9FF1' }}>
+              <button
+                type="button" style={click ? { backgroundColor: '#B9B9B9' } : { backgroundColor: '#3A9FF1' }}
+                onClick={handleClickButtonRegister}>
                 Entrada
               </button>
-              <button type="button" style={{
-                backgroundColor: "#FF576B",
-              }}>
+              <button type="button"
+                style={!click ? { backgroundColor: '#B9B9B9' } : { backgroundColor: "#FF576B" }}
+                onClick={handleClickButtonRegister}>
                 Saída
               </button>
             </div>
+
             <form action="" className='form-register'>
               <label htmlFor="">Valor</label>
               <input type="text" />
@@ -53,9 +66,6 @@ export const ModalRegister = ({ addRegister, setAddRegister }) => {
 
               <button type="submit">Confirmar</button>
             </form>
-            {/* <div className='formulario'>
-
-            </div> */}
           </div>
 
         </div >
