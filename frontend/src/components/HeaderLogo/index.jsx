@@ -5,10 +5,21 @@ import ProfileIcon from '../../assets/profile-icon.svg'
 import ExitIcon from '../../assets/logout-icon.svg'
 import { ModalPerfilEdit } from '../ModalPerfilEdit'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 
 
 export const HeaderLogo = ({ isLoggedIn }) => {
-  const [editPerfil, setEditPerfil] = useState(false)
+  const [editPerfil, setEditPerfil] = useState(false);
+  const [logout, setLogout] = useState(false);
+  const navigate = useNavigate()
+
+  const handleClickLogout = () => {
+    setLogout(true)
+    if (logout) {
+      return navigate('/login')
+    }
+  }
   return (
 
     <header>
@@ -20,7 +31,10 @@ export const HeaderLogo = ({ isLoggedIn }) => {
           onClick={() => setEditPerfil(true)}
         />
         <strong>Jamile</strong>
-        <img src={ExitIcon} alt="Sair" />
+        <img
+          src={ExitIcon} alt="Sair"
+          onClick={handleClickLogout}
+        />
       </div> : null}
 
 
