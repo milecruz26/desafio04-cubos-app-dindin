@@ -7,13 +7,11 @@ const {
   createUser,
 } = require("../controller/users");
 
-const { verifyIfUserExist } = require("../middleware/middleware");
-
 const routes = express();
 
 routes.get("/", getAllUser);
-routes.post("/register", verifyIfUserExist, createUser);
-routes.put("/update/:conta", updateUser);
-routes.delete("/delete/:conta", deleteUsers);
+routes.post("/register", createUser);
+// routes.put("/update/:contas", updateUser);
+// routes.delete("/delete/:contas", deleteUsers);
 
 module.exports = routes;
