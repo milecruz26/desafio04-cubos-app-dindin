@@ -12,7 +12,7 @@ export const Home = () => {
 
     <div className='background'>
 
-      <HeaderLogo />
+      <HeaderLogo isLoggedIn={true} />
 
       <main className='main-home'>
         <div className='container-description'>

@@ -7,7 +7,7 @@ export const SignUp = () => {
   return (
     <div className='body-login-signup'>
 
-      <HeaderLogo />
+      <HeaderLogo isLoggedIn={false} />
 
       <main>
         <SignUpModal />
