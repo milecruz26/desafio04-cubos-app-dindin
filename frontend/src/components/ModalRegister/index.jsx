@@ -1,6 +1,7 @@
 import './styles.css'
 import CloseIcon from '../../assets/close-icon.svg'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+
 
 export const ModalRegister = ({ addRegister, setAddRegister }) => {
   const [click, setClick] = useState(false)
@@ -8,7 +9,8 @@ export const ModalRegister = ({ addRegister, setAddRegister }) => {
     valor: 0,
     categoria: '',
     data: '',
-    descricao: ''
+    descricao: '',
+    submit: false,
   })
 
 
@@ -22,12 +24,16 @@ export const ModalRegister = ({ addRegister, setAddRegister }) => {
     }
   }
 
+  useEffect(() => {
+    if (registro.submit) {
+      console.log({ ...registro })
+      setAddRegister(false)
+    }
+  }, [registro.submit, setAddRegister])
+
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    if ({ ...registro }) {
-      return console.log({ ...registro })
-    }
+    setRegistro({ ...registro, submit: true })
   }
 
   const handleChangeForm = (event, campo) => {
@@ -35,6 +41,7 @@ export const ModalRegister = ({ addRegister, setAddRegister }) => {
     setRegistro({ ...registro, [campo]: value })
 
   }
+
 
 
   return (
@@ -120,7 +127,8 @@ export const ModalRegister = ({ addRegister, setAddRegister }) => {
                 type="text"
                 value={registro.descricao} onChange={(event) => handleChangeForm(event, 'descricao')} />
 
-              <button type="submit">Confirmar</button>
+              <button
+                type="submit">Confirmar</button>
             </form>
           </div>
 
