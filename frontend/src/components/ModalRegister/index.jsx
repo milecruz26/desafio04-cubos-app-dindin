@@ -1,48 +1,48 @@
 import './styles.css'
 import CloseIcon from '../../assets/close-icon.svg'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 
-export const ModalRegister = ({ addRegister, setAddRegister }) => {
-  const [click, setClick] = useState(false)
+export const ModalRegister = ({ addRegister, setAddRegister, transacao, setTransacao }) => {
+  const [clickEntraceExit, setclickEntraceExit] = useState(false)
+  const [nextId, setNextId] = useState(1);
   const [registro, setRegistro] = useState({
     valor: 0,
     categoria: '',
     data: '',
     descricao: '',
-    submit: false,
   })
 
 
-  const handleClickButtonRegister = () => {
-    if (!click) {
-      return setClick(true)
-
-    }
-    if (click) {
-      return setClick(false)
-    }
+  const handleClickEntraceExitColor = () => {
+    setclickEntraceExit(!clickEntraceExit);
   }
-
-  useEffect(() => {
-    if (registro.submit) {
-      console.log({ ...registro })
-      setAddRegister(false)
-    }
-  }, [registro.submit, setAddRegister])
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setRegistro({ ...registro, submit: true })
+    console.log(registro)
+
+    setNextId(nextId + 1);
+    const registroComId = {
+      ...registro,
+      id: nextId,
+    };
+
+
+    setTransacao((prevTransacao) => [...prevTransacao, registroComId])
+
+    setRegistro({
+      valor: 0,
+      categoria: '',
+      data: '',
+      descricao: '',
+    })
+    console.log(transacao)
   }
 
-  const handleChangeForm = (event, campo) => {
-    const value = event.target.value
-    setRegistro({ ...registro, [campo]: value })
-
+  const handleChangeForm = (event) => {
+    setRegistro({ ...registro, [event.target.name]: event.target.value })
   }
-
-
 
   return (
     <>
@@ -64,29 +64,30 @@ export const ModalRegister = ({ addRegister, setAddRegister }) => {
 
             <div className='buttons-register'>
               <button
-                type="button" style={click ? { backgroundColor: '#B9B9B9' } : { backgroundColor: '#3A9FF1' }}
-                onClick={handleClickButtonRegister}>
+                type="button" style={clickEntraceExit ? { backgroundColor: '#B9B9B9' } : { backgroundColor: '#3A9FF1' }}
+                onClick={handleClickEntraceExitColor}>
                 Entrada
               </button>
               <button type="button"
-                style={!click ? { backgroundColor: '#B9B9B9' } : { backgroundColor: "#FF576B" }}
-                onClick={handleClickButtonRegister}>
+                style={!clickEntraceExit ? { backgroundColor: '#B9B9B9' } : { backgroundColor: "#FF576B" }}
+                onClick={handleClickEntraceExitColor}>
                 Saída
               </button>
             </div>
 
             <form onSubmit={handleSubmit}
               className='form-register'>
+
               <label htmlFor="valor">Valor</label>
               <input
+                name='valor'
                 type="number"
-                id='valor'
                 value={registro.valor}
                 onChange={(event) => handleChangeForm(event, 'valor')} />
 
               <label htmlFor="categoria">Categoria</label>
               <select
-                id='categoria'
+                name='categoria'
                 className='categoria'
                 value={registro.categoria}
                 onChange={(event) => handleChangeForm(event, 'categoria')}>
@@ -117,18 +118,18 @@ export const ModalRegister = ({ addRegister, setAddRegister }) => {
 
               <label htmlFor="data" >Data</label>
               <input
-                id='data'
+                name='data'
                 type="text"
                 value={registro.data} onChange={(event) => handleChangeForm(event, 'data')} />
 
               <label htmlFor="descricao">Descrição</label>
               <input
-                id='descricao'
+                name='descricao'
                 type="text"
                 value={registro.descricao} onChange={(event) => handleChangeForm(event, 'descricao')} />
 
               <button
-                type="submit">Confirmar</button>
+              >Confirmar</button>
             </form>
           </div>
 

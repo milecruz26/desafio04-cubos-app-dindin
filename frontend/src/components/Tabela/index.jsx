@@ -4,7 +4,8 @@ import EditIcon from '../../assets/icons-8-editar-3.svg'
 import TrashIcon from '../../assets/icons-8-lixo-1.svg'
 
 
-export const Tabela = () => {
+export const Tabela = ({ transacao }) => {
+  // const { data, descricao, categoria, valor } = regis
   return (
 
     <div className='table'>
@@ -28,32 +29,22 @@ export const Tabela = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>01/09/21</td>
-            <td>Quarta</td>
-            <td>Venda dos brigadeiros</td>
-            <td>Pix</td>
-            <td>R$ 100,00</td>
-            <td className='edit-icon'>
-              <img src={EditIcon} alt="editar"
-                style={{ cursor: 'pointer' }} />
-              <img src={TrashIcon} alt="deletar"
-                style={{ marginLeft: '13px', cursor: 'pointer' }} />
-            </td>
-          </tr>
-          <tr>
-            <td>01/09/21</td>
-            <td>Quarta</td>
-            <td>Venda dos brigadeiros</td>
-            <td>Pix</td>
-            <td>R$ 100,00</td>
-            <td className='edit-icon'>
-              <img src={EditIcon} alt="editar"
-                style={{ cursor: 'pointer' }} />
-              <img src={TrashIcon} alt="deletar"
-                style={{ marginLeft: '13px', cursor: 'pointer' }} />
-            </td>
-          </tr>
+          {transacao.map((transacao) => (
+            <tr key={transacao.id}>
+              <td>{transacao.data}</td>
+              <td>Quarta</td>
+              <td>{transacao.descricao}</td>
+              <td>{transacao.categoria}</td>
+              <td>R$ {transacao.valor}</td>
+              <td className='edit-icon'>
+                <img src={EditIcon} alt="editar"
+                  style={{ cursor: 'pointer' }} />
+                <img src={TrashIcon} alt="deletar"
+                  style={{ marginLeft: '13px', cursor: 'pointer' }} />
+              </td>
+            </tr>
+
+          ))}
         </tbody>
       </table>
     </div>
