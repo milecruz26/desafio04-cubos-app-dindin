@@ -4,21 +4,34 @@ const {
   depositos,
   transferencias,
 } = require("../bancodedados");
-let numero = 1;
+let numberOfConta = 1;
 
 const createUser = async (req, res) => {
   const { nome, cpf, data_nascimento, telefone, email, senha } = req.body;
   if (!nome || !cpf || !data_nascimento || !telefone || !email || !senha) {
     return res
       .status(400)
-      .json({ status: "Error", message: "O campo nome é obrigatorio" });
+      .json({ status: "Error", message: "O campo nome é obrigatório" });
   }
 
-  //fazer a decteção se e uma string com todos.
-  if (!isNaN(nome) || !isNaN(email)) {
+  const cpfExists = contas.some((conta) => conta.usuario.cpf === cpf);
+  if (cpfExists) {
     return res.status(400).json({
       status: "Error",
-      message: "Não pode ser um numero",
+      message: "Esse CPF já está em uso",
+    });
+  }
+
+  if (!isNaN(nome) || !isNaN(email) || !isNaN(senha)) {
+    let errorMessage = "Os seguintes campos não podem ser apenas números: ";
+    if (!isNaN(nome)) errorMessage += "nome, ";
+    if (!isNaN(email)) errorMessage += "email, ";
+    if (!isNaN(senha)) errorMessage += "senha, ";
+
+    errorMessage = errorMessage.slice(0, -2);
+    return res.status(400).json({
+      status: "Error",
+      message: errorMessage,
     });
   }
 
@@ -31,7 +44,7 @@ const createUser = async (req, res) => {
 
   try {
     contas.push({
-      numero,
+      numberOfConta,
       saldo: 0,
       usuario: {
         nome,
@@ -42,6 +55,7 @@ const createUser = async (req, res) => {
         senha,
       },
     });
+    numberOfConta++;
 
     return res.status(201).json({ message: "usuario cadastrado com sucesso" });
   } catch (error) {
@@ -51,82 +65,70 @@ const createUser = async (req, res) => {
 
 const getAllUser = async (req, res) => {
   return res.status(200).json(contas);
-  // const { contas } = req.query;
-
-  // try {
-  //   let listOfContas = await searchListUsers();
-
-  //   if (contas) {
-  //     const everyContas = listOfContas.every((p) => {
-  //       return p.contas === contas;
-  //     });
-  //     const someContas = listOfContas.some((p) => {
-  //       return p.contas === contas;
-  //     });
-  //     listOfContas = listOfContas.filter((p) => {
-  //       return p.contas === contas;
-  //     });
-  //     return res.status(200).json({ listOfContas, everyContas, someContas });
-  //   }
-  // } catch (error) {
-  //   return res.status(500).json({ message: erro.message });
-  // }
 };
 
-// const deleteUsers = async (req, res) => {
-//   const { contas } = req.params;
+const updateUser = async (req, res) => {
+  const { nome, cpf, data_nascimento, telefone, email, senha } = req.body;
+  const { numberOfConta } = req.params;
 
-//   try {
-//     const listOfContas = await searchListUsers();
+  if (!nome && !cpf && !data_nascimento && !telefone && !email && !senha) {
+    return res
+      .status(400)
+      .json({ status: "Error", message: "Nenhum campo para atualizar" });
+  }
 
-//     const listDeleteContas = listOfContas.filter((p) => p.nome !== nome);
+  try {
+    const contaIndex = contas.findIndex(
+      (conta) => conta.numberOfConta === parseInt(numberOfConta)
+    );
 
-//     if (listDeleteContas.length === listOfContas.length) {
-//       return res
-//         .status(404)
-//         .json({ message: "tamanho da lista esta igual, voce modificou?" });
-//     }
-//     writeFileUsers(listDeleteContas);
+    if (contaIndex === -1) {
+      return res
+        .status(404)
+        .json({ status: "Error", message: "Conta não encontrada" });
+    }
 
-//     return res.status(200).json({ message: "usuario deletado com sucesso" });
-//   } catch (error) {
-//     return res.status(500).json({ message: error.message });
-//   }
-// };
+    if (nome) contas[contaIndex].usuario.nome = nome;
+    if (cpf) contas[contaIndex].usuario.cpf = cpf;
+    if (data_nascimento)
+      contas[contaIndex].usuario.data_nascimento = data_nascimento;
+    if (telefone) contas[contaIndex].usuario.telefone = telefone;
+    if (email) contas[contaIndex].usuario.email = email;
+    if (senha) contas[contaIndex].usuario.senha = senha;
 
-// const updateUser = async (req, res) => {
-//   const { contas } = req.params;
-//   const { saques, depositos, transferencias } = req.body;
+    return res
+      .status(200)
+      .json({ message: "Dados da conta atualizados com sucesso" });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
 
-//   try {
-//     let listOfContas = await searchListUsers();
+const deleteUsers = async (req, res) => {
+  const { numberOfConta } = req.params;
 
-//     let listToUpdateUser = listOfContas.find((p) => p.nome === nome);
+  try {
+    const contaIndex = contas.findIndex(
+      (conta) => conta.numberOfConta === parseInt(numberOfConta)
+    );
 
-//     if (listToUpdateUser) {
-//       listToUpdateUser.saques = saques || listToUpdateUser;
-//       listToUpdateUser.depositos = depositos || listToUpdateUser;
-//       listToUpdateUser.transferencias = transferencias || listToUpdateUser;
-//     }
-//     const indexToUpdate = listOfContas.indexOf((p) => p.contas === contas);
+    if (contaIndex === -1) {
+      return res
+        .status(404)
+        .json({ status: "Error", message: "Conta não encontrada" });
+    }
 
-//     listOfContas[indexToUpdate] = {
-//       contas,
-//       saques: listToUpdateUser.saques,
-//       depositos: listToUpdateUser.depositos,
-//       transferencias: listToUpdateUser.transferencias,
-//     };
+    contas.splice(contaIndex, 1);
 
-//     await writeFileUsers(listOfContas);
-//     return res.status(204).json({ message: "Usuario atualizado com sucesso " });
-//   } catch (error) {
-//     return res.status(500).json({ message: error.message });
-//   }
-// };
+    return res.status(200).json({ message: "Conta excluída com sucesso!" });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
 
 module.exports = {
-  // updateUser,
-  // deleteUsers,
+  updateUser,
+  deleteUsers,
   getAllUser,
   createUser,
 };

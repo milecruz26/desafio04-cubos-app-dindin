@@ -11,7 +11,7 @@ const routes = express();
 
 routes.get("/", getAllUser);
 routes.post("/register", createUser);
-// routes.put("/update/:contas", updateUser);
-// routes.delete("/delete/:contas", deleteUsers);
+routes.put("/update/:numberOfConta", updateUser);
+routes.delete("/delete/:numberOfConta", deleteUsers);
 
 module.exports = routes;
