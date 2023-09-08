@@ -34,6 +34,13 @@
   line-height: normal;
 }
 
+.table-value {
+  font-family: var(--font-family-lato);
+  color: #7B61FF;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
 .table tr,
 td {
   width: 60.25rem;

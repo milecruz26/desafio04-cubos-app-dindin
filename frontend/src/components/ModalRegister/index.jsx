@@ -26,6 +26,7 @@ export const ModalRegister = ({ addRegister, setAddRegister, transacao, setTrans
     const registroComId = {
       ...registro,
       id: nextId,
+      clickEntraceExit
     };
 
 

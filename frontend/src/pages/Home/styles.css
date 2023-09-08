@@ -51,14 +51,16 @@
 .table-resume {
   margin: 1rem;
   display: flex;
+
   flex-direction: column;
+
   text-align: justify;
+  font-family: var(--font-family-rubik);
 }
 
 .table-resume h2 {
   height: 2rem;
   color: #2F2F2F;
-  font-family: var(--font-family-rubik);
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 700;
@@ -79,10 +81,7 @@ tr {
   width: 11rem;
 }
 
-.table-resume tr,
-td {
-  color: #2F2F2F;
-  font-family: var(--font-family-rubik);
+.table-resume tr {
   font-size: 0.8125rem;
   font-style: normal;
   font-weight: 500;
@@ -90,11 +89,24 @@ td {
   border-bottom: none;
 }
 
+.entrace {
+  color: #645FFB;
+}
+
+.balance {
+  color: #3A9FF1;
+}
+
+.exit {
+  color: #FA8C10;
+
+}
+
 .table-resume td {
   text-align: right;
 }
 
-.table-resume .saldo {
+.table-resume .balance-txt {
   font-weight: 700;
   font-size: 0.875rem;
 }

@@ -3,7 +3,6 @@ import '../../global.css'
 
 import { Tabela } from '../../components/Tabela'
 import { ModalRegister } from '../../components/ModalRegister';
-// import { ResumeTable } from '../../components/ResumeTable'
 import { FilterButton } from '../../components/FilterButton'
 import { HeaderLogo } from '../../components/HeaderLogo'
 
@@ -24,15 +23,6 @@ export const Home = () => {
           <FilterButton />
 
           <div className='description'>
-            {/* {transacao.map((regis) => (
-              <Tabela
-                key={regis.id}
-                regis={regis}
-              />
-
-            )
-            )} */}
-
             <Tabela transacao={transacao} />
             <div className='container-resume'>
               <div className='resume'>
@@ -40,17 +30,17 @@ export const Home = () => {
                   <h2>Resumo</h2>
                   <tr>
                     <th scope='row'>Entradas</th>
-                    <td>R$200</td>
+                    <td className='entrace'>R$200,00</td>
                   </tr>
 
                   <tr>
-                    <th scope='row'>Saídas</th>
-                    <td>R$70,00</td>
+                    <th scope='row' >Saídas</th>
+                    <td className='exit'>R$70,00</td>
                   </tr>
                   <hr />
                   <tr>
-                    <th scope='row' className='saldo'>Saldo</th>
-                    <td>R$529,00</td>
+                    <th scope='row' className='balance-txt'>Saldo</th>
+                    <td className='balance'>R$529,00</td>
                   </tr>
                 </table>
               </div>
