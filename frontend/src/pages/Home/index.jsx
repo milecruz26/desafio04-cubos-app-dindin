@@ -23,7 +23,7 @@ export const Home = () => {
           <FilterButton />
 
           <div className='description'>
-            <Tabela transacao={transacao} />
+            <Tabela transacao={transacao} setTransacao={setTransacao} />
             <div className='container-resume'>
               <div className='resume'>
                 <table className='table-resume'>

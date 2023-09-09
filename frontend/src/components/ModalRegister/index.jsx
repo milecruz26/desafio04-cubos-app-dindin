@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 export const ModalRegister = ({ addRegister, setAddRegister, transacao, setTransacao }) => {
   const [clickEntraceExit, setclickEntraceExit] = useState(false)
-  const [nextId, setNextId] = useState(1);
+  const [nextId, setNextId] = useState(0);
   const [registro, setRegistro] = useState({
     valor: 0,
     categoria: '',

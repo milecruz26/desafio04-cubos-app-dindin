@@ -3,20 +3,25 @@ import './styles.css'
 import '../../../src/global.css'
 import EditIcon from '../../assets/icons-8-editar-3.svg'
 import TrashIcon from '../../assets/icons-8-lixo-1.svg'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-//verificar a função de deletar no ícone lixeira
 
-export const Tabela = ({ transacao }) => {
 
-  const [items, setItems] = useState(transacao.id);
+export const Tabela = ({ transacao, setTransacao }) => {
+  const [idTransacao, setIdTransacao] = useState(null)
 
-  const handleDeleteItem = (itemId) => {
-    console.log("Delete item with ID:", itemId);
-    const updatedItems = items.filter((transacao) => transacao.id !== itemId);
-    console.log("Updated Items:", updatedItems);
-    setItems(updatedItems);
+  const handleDeleteItem = (event) => {
+    setIdTransacao(event)
   };
+
+  useEffect(() => {
+    if (idTransacao !== null) {
+      setTransacao(transacao.filter((transacao) => transacao.id !== idTransacao
+      ));
+      setIdTransacao(null)
+    }
+  }, [idTransacao, setTransacao, transacao])
+
   return (
 
     <div className='table'>
