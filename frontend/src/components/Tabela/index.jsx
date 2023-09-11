@@ -20,7 +20,9 @@ export const Tabela = ({ transacao, setTransacao }) => {
       ));
       setIdTransacao(null)
     }
-  }, [idTransacao, setTransacao, transacao])
+
+
+  }, [idTransacao, setTransacao])
 
   return (
 
@@ -52,7 +54,7 @@ export const Tabela = ({ transacao, setTransacao }) => {
               <td className='table-description'>{transacao.descricao}</td>
               <td className='table-category'>{transacao.categoria}</td>
               <td className='table-value'
-                style={transacao.clickEntraceExit ? { color: '#FA8C10' } : { color: '#7B61FF' }}
+                style={transacao.saida ? { color: '#FA8C10' } : { color: '#7B61FF' }}
               >R$ {transacao.valor}</td>
               <td className='edit-icon'>
                 <img src={EditIcon} alt="editar"

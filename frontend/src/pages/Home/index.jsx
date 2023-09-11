@@ -6,11 +6,18 @@ import { ModalRegister } from '../../components/ModalRegister';
 import { FilterButton } from '../../components/FilterButton'
 import { HeaderLogo } from '../../components/HeaderLogo'
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
 
 export const Home = () => {
   const [addRegister, setAddRegister] = useState(false)
   const [transacao, setTransacao] = useState([])
+
+
+
+  // Codigo correto para somar, nao apagar:
+  // const entrada = transacao.reduce((acumulador, valores) => acumulador + Number(valores.valor), 0);
+
 
   return (
 
@@ -23,24 +30,28 @@ export const Home = () => {
           <FilterButton />
 
           <div className='description'>
-            <Tabela transacao={transacao} setTransacao={setTransacao} />
+            <Tabela
+              transacao={transacao}
+              setTransacao={setTransacao}
+
+            />
             <div className='container-resume'>
               <div className='resume'>
                 <table className='table-resume'>
                   <h2>Resumo</h2>
                   <tr>
                     <th scope='row'>Entradas</th>
-                    <td className='entrace'>R$200,00</td>
+                    <td className='entrace'>R$0</td>
                   </tr>
 
                   <tr>
                     <th scope='row' >Saídas</th>
-                    <td className='exit'>R$70,00</td>
+                    <td className='exit'>R$ 0</td>
                   </tr>
                   <hr />
                   <tr>
                     <th scope='row' className='balance-txt'>Saldo</th>
-                    <td className='balance'>R$529,00</td>
+                    <td className='balance'>R$0</td>
                   </tr>
                 </table>
               </div>
@@ -52,9 +63,10 @@ export const Home = () => {
                 setAddRegister={setAddRegister}
                 transacao={transacao}
                 setTransacao={setTransacao}
+              // setExit={setExit}
+              // setEntrace={setEntrace}
               />
             </div>
-            {/* <ResumeTable /> */}
           </div>
         </div>
       </main >

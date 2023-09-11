@@ -4,45 +4,49 @@ import { useState } from 'react'
 
 
 export const ModalRegister = ({ addRegister, setAddRegister, transacao, setTransacao }) => {
-  const [clickEntraceExit, setclickEntraceExit] = useState(false)
-  const [nextId, setNextId] = useState(0);
-  const [registro, setRegistro] = useState({
+  const defaultRegister = {
+    id: 0,
     valor: 0,
     categoria: '',
     data: '',
     descricao: '',
+    saida: false
+  }
+  const [form, setForm] = useState({
+    ...defaultRegister,
   })
 
+  const { valor, categoria, data, descricao, saida } = form;
 
-  const handleClickEntraceExitColor = () => {
-    setclickEntraceExit(!clickEntraceExit);
-  }
 
+  //funcao de submit com preventDefault:
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(registro)
 
-    setNextId(nextId + 1);
-    const registroComId = {
-      ...registro,
-      id: nextId,
-      clickEntraceExit
-    };
+  }
 
+  //funcao de click para mudar o setTransacao:
 
-    setTransacao((prevTransacao) => [...prevTransacao, registroComId])
-
-    setRegistro({
-      valor: 0,
-      categoria: '',
-      data: '',
-      descricao: '',
-    })
+  const handleClickFormAddRegister = () => {
+    // setForm(form.id + 1)
+    setTransacao([...transacao,
+    {
+      id: Math.floor(Math.random() * (10000 - 1) + 1),
+      valor,
+      categoria,
+      data,
+      descricao,
+      saida
+    }])
+    setForm({ ...defaultRegister })
     console.log(transacao)
   }
 
+  //funcao de onChange do formulario:
+
+
   const handleChangeForm = (event) => {
-    setRegistro({ ...registro, [event.target.name]: event.target.value })
+    setForm({ ...form, [event.target.name]: event.target.value })
   }
 
   return (
@@ -65,13 +69,14 @@ export const ModalRegister = ({ addRegister, setAddRegister, transacao, setTrans
 
             <div className='buttons-register'>
               <button
-                type="button" style={clickEntraceExit ? { backgroundColor: '#B9B9B9' } : { backgroundColor: '#3A9FF1' }}
-                onClick={handleClickEntraceExitColor}>
+                type="button"
+                style={form.saida ? { backgroundColor: '#B9B9B9' } : { backgroundColor: '#3A9FF1' }}
+                onClick={() => setForm({ ...form, saida: false })}>
                 Entrada
               </button>
               <button type="button"
-                style={!clickEntraceExit ? { backgroundColor: '#B9B9B9' } : { backgroundColor: "#FF576B" }}
-                onClick={handleClickEntraceExitColor}>
+                style={!form.saida ? { backgroundColor: '#B9B9B9' } : { backgroundColor: "#FF576B" }}
+                onClick={() => setForm({ ...form, saida: true })}>
                 Saída
               </button>
             </div>
@@ -83,54 +88,66 @@ export const ModalRegister = ({ addRegister, setAddRegister, transacao, setTrans
               <input
                 name='valor'
                 type="number"
-                value={registro.valor}
-                onChange={(event) => handleChangeForm(event, 'valor')} />
+                value={valor}
+                onChange={handleChangeForm} />
 
               <label htmlFor="categoria">Categoria</label>
               <select
                 name='categoria'
                 className='categoria'
-                value={registro.categoria}
+                value={form.categoria}
                 onChange={(event) => handleChangeForm(event, 'categoria')}>
                 <option
-                  value="alimentacao">
-                  Alimentação</option>
+                  value="Alimentação">
+                  Alimentação
+                </option>
 
                 <option
-                  value="assinaturas">
-                  Assinaturas e Serviços</option>
+                  value="Assinaturas">
+                  Assinaturas e Serviços
+                </option>
 
                 <option
-                  value="casa">
-                  Casa</option>
+                  value="Casa">
+                  Casa
+                </option>
 
                 <option
-                  value="compras">
-                  Compras</option>
+                  value="Compras">
+                  Compras
+                </option>
 
                 <option
-                  value="cuidados_pessoais">
-                  Cuidados pessoais</option>
+                  value="Cuidados Pessoais">
+                  Cuidados pessoais
+                </option>
 
                 <option
-                  value="educacao">
-                  Educação</option>
+                  value="Educação">
+                  Educação
+                </option>
               </select>
 
               <label htmlFor="data" >Data</label>
               <input
                 name='data'
-                type="text"
-                value={registro.data} onChange={(event) => handleChangeForm(event, 'data')} />
+                type="date"
+                value={form.data}
+                onChange={(event) => handleChangeForm(event, 'data')} />
 
               <label htmlFor="descricao">Descrição</label>
               <input
                 name='descricao'
                 type="text"
-                value={registro.descricao} onChange={(event) => handleChangeForm(event, 'descricao')} />
+                value={form.descricao}
+                onChange={(event) => handleChangeForm(event, 'descricao')} />
 
               <button
-              >Confirmar</button>
+                type='submit'
+                onClick={handleClickFormAddRegister}
+              >
+                Confirmar
+              </button>
             </form>
           </div>
 
