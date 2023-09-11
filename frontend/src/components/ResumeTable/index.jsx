@@ -1,44 +1,51 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './styles.css'
-import { ModalRegister } from '../ModalRegister';
 
 
+export const ResumeTable = ({ transacao }) => {
+  const [entrada, setEntrada] = useState(0);
+  const [exit, setExit] = useState(0);
+  const saldo = (entrada - exit);
 
 
-export const ResumeTable = () => {
-  const [addRegister, setAddRegister] = useState(false)
+  useEffect(() => {
+    let totalEntrada = 0
+    let totalSaida = 0
+
+    transacao.forEach(transacao => {
+      if (!transacao.saida) {
+        totalEntrada += Number(transacao.valor);
+      }
+      if (transacao.saida) {
+        totalSaida += Number(transacao.valor);
+      }
+    });
+    setEntrada(totalEntrada.toFixed(2));
+    setExit(totalSaida.toFixed(2));
+  }, [transacao])
 
 
 
   return (
 
-    <div className='container'>
-      <div className='resume'>
-        <table className='table-resume'>
-          <h2>Resumo</h2>
-          <tr>
-            <th scope='row'>Entradas</th>
-            <td>R$200</td>
-          </tr>
+    <div className='resume'>
+      <table className='table-resume'>
+        <h2>Resumo</h2>
+        <tr>
+          <th scope='row'>Entradas</th>
+          <td className='entrace'>R${entrada}</td>
+        </tr>
 
-          <tr>
-            <th scope='row'>Saídas</th>
-            <td>R$70,00</td>
-          </tr>
-          <hr />
-          <tr>
-            <th scope='row' className='saldo'>Saldo</th>
-            <td>R$529,00</td>
-          </tr>
-        </table>
-      </div>
-      <button
-        onClick={() => setAddRegister(true)}
-      >Adicionar Registro</button>
-      <ModalRegister
-        addRegister={addRegister}
-        setAddRegister={setAddRegister}
-      />
+        <tr>
+          <th scope='row' >Saídas</th>
+          <td className='exit'>R$ {exit}</td>
+        </tr>
+        <hr />
+        <tr>
+          <th scope='row' className='balance-txt'>Saldo</th>
+          <td className='balance'>R${saldo.toFixed(2)}</td>
+        </tr>
+      </table>
     </div>
 
   )

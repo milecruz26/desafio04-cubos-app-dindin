@@ -6,7 +6,8 @@ import { ModalRegister } from '../../components/ModalRegister';
 import { FilterButton } from '../../components/FilterButton'
 import { HeaderLogo } from '../../components/HeaderLogo'
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { ResumeTable } from '../../components/ResumeTable';
 
 
 export const Home = () => {
@@ -36,7 +37,10 @@ export const Home = () => {
 
             />
             <div className='container-resume'>
-              <div className='resume'>
+              <ResumeTable
+                transacao={transacao}
+              />
+              {/* <div className='resume'>
                 <table className='table-resume'>
                   <h2>Resumo</h2>
                   <tr>
@@ -54,7 +58,7 @@ export const Home = () => {
                     <td className='balance'>R$0</td>
                   </tr>
                 </table>
-              </div>
+              </div> */}
               <button
                 onClick={() => setAddRegister(true)}
               >Adicionar Registro</button>
@@ -63,8 +67,6 @@ export const Home = () => {
                 setAddRegister={setAddRegister}
                 transacao={transacao}
                 setTransacao={setTransacao}
-              // setExit={setExit}
-              // setEntrace={setEntrace}
               />
             </div>
           </div>

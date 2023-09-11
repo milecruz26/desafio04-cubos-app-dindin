@@ -28,13 +28,12 @@ export const ModalRegister = ({ addRegister, setAddRegister, transacao, setTrans
   //funcao de click para mudar o setTransacao:
 
   const handleClickFormAddRegister = () => {
-    // setForm(form.id + 1)
     setTransacao([...transacao,
     {
       id: Math.floor(Math.random() * (10000 - 1) + 1),
       valor,
       categoria,
-      data,
+      data: new Date(data).toLocaleDateString('pt-BR', { timeZone: 'UTC' }),
       descricao,
       saida
     }])
