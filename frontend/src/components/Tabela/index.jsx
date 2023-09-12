@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 
 
 
-export const Tabela = ({ transacao, setTransacao }) => {
+export const Tabela = ({ transacao, setTransacao, setEditRegister, currentRegister, setCurrentRegister }) => {
   const [idTransacao, setIdTransacao] = useState(null)
 
   const handleData = data => {
@@ -34,17 +34,32 @@ export const Tabela = ({ transacao, setTransacao }) => {
 
   const handleDeleteItem = (event) => {
     setIdTransacao(event)
-  };
-
-  useEffect(() => {
     if (idTransacao !== null) {
       setTransacao(transacao.filter((transacao) => transacao.id !== idTransacao
       ));
       setIdTransacao(null)
     }
+  };
+
+  const handleEditRegister = (event) => {
+    setIdTransacao(event);
+    setEditRegister(true);
+
+    if (idTransacao !== null) {
+      setCurrentRegister(transacao.find((t) => t.id === event));
+    }
+
+  }
+
+  // useEffect(() => {
+  //   if (idTransacao !== null) {
+  //     setTransacao(transacao.filter((transacao) => transacao.id !== idTransacao
+  //     ));
+  //     setIdTransacao(null)
+  //   }
 
 
-  }, [idTransacao, setTransacao])
+  // }, [idTransacao, setTransacao])
 
   return (
 
@@ -80,7 +95,9 @@ export const Tabela = ({ transacao, setTransacao }) => {
               >R$ {transacao.valor}</td>
               <td className='edit-icon'>
                 <img src={EditIcon} alt="editar"
-                  style={{ cursor: 'pointer' }} />
+                  style={{ cursor: 'pointer' }}
+                  onClick={() => handleEditRegister(transacao.id)}
+                />
                 <img src={TrashIcon} alt="deletar"
                   style={{ marginLeft: '13px', cursor: 'pointer' }}
                   onClick={() => handleDeleteItem(transacao.id)} />

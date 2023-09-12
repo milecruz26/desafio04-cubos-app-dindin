@@ -8,16 +8,17 @@ import { HeaderLogo } from '../../components/HeaderLogo'
 
 import { useState } from 'react';
 import { ResumeTable } from '../../components/ResumeTable';
+import { ModalEditRegister } from '../../components/ModalEditRegister';
 
 
 export const Home = () => {
   const [addRegister, setAddRegister] = useState(false)
+  const [editRegister, setEditRegister] = useState(false)
+
+  const [currentRegister, setCurrentRegister] = useState([])
+
   const [transacao, setTransacao] = useState([])
 
-
-
-  // Codigo correto para somar, nao apagar:
-  // const entrada = transacao.reduce((acumulador, valores) => acumulador + Number(valores.valor), 0);
 
 
   return (
@@ -34,31 +35,15 @@ export const Home = () => {
             <Tabela
               transacao={transacao}
               setTransacao={setTransacao}
+              setCurrentRegister={setCurrentRegister}
+              currentRegister={currentRegister}
+              setEditRegister={setEditRegister}
 
             />
             <div className='container-resume'>
               <ResumeTable
                 transacao={transacao}
               />
-              {/* <div className='resume'>
-                <table className='table-resume'>
-                  <h2>Resumo</h2>
-                  <tr>
-                    <th scope='row'>Entradas</th>
-                    <td className='entrace'>R$0</td>
-                  </tr>
-
-                  <tr>
-                    <th scope='row' >Saídas</th>
-                    <td className='exit'>R$ 0</td>
-                  </tr>
-                  <hr />
-                  <tr>
-                    <th scope='row' className='balance-txt'>Saldo</th>
-                    <td className='balance'>R$0</td>
-                  </tr>
-                </table>
-              </div> */}
               <button
                 onClick={() => setAddRegister(true)}
               >Adicionar Registro</button>
@@ -68,6 +53,16 @@ export const Home = () => {
                 transacao={transacao}
                 setTransacao={setTransacao}
               />
+
+              <ModalEditRegister
+                transacao={transacao}
+                setTransacao={setTransacao}
+                editRegister={editRegister}
+                setEditRegister={setEditRegister}
+                currentRegister={currentRegister}
+                setCurrentRegister={setCurrentRegister}
+              />
+
             </div>
           </div>
         </div>
