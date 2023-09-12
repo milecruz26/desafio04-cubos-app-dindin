@@ -200,10 +200,206 @@ const deposito = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+
+const transferencia = async (req, res) => {
+  try {
+    const { numeroContaOrigem, numeroContaDestino, senha, valor } = req.body;
+
+    if (
+      !numeroContaOrigem ||
+      !numeroContaDestino ||
+      !senha ||
+      valor === null ||
+      valor <= 0
+    ) {
+      return res.status(400).json({
+        status: "Error",
+        message:
+          "Número da conta de origem, número da conta de destino, senha e valor são obrigatórios e o valor deve ser maior que zero",
+      });
+    }
+
+    const data = fs.readFileSync(databasePath, "utf-8");
+    const users = JSON.parse(data);
+
+    const contaOrigemIndex = users.findIndex(
+      (conta) => conta.numberOfConta === parseInt(numeroContaOrigem)
+    );
+
+    if (contaOrigemIndex === -1) {
+      return res
+        .status(404)
+        .json({ status: "Error", message: "Conta de origem não encontrada" });
+    }
+
+    const contaDestinoIndex = users.findIndex(
+      (conta) => conta.numberOfConta === parseInt(numeroContaDestino)
+    );
+
+    if (contaDestinoIndex === -1) {
+      return res
+        .status(404)
+        .json({ status: "Error", message: "Conta de destino não encontrada" });
+    }
+
+    const contaOrigem = users[contaOrigemIndex];
+    if (contaOrigem.usuario.senha !== senha) {
+      return res.status(401).json({
+        status: "Error",
+        message: "Senha incorreta para a conta de origem",
+      });
+    }
+
+    if (contaOrigem.saldo < valor) {
+      return res.status(400).json({
+        status: "Error",
+        message: "Saldo insuficiente na conta de origem",
+      });
+    }
+
+    contaOrigem.saldo -= valor;
+    const contaDestino = users[contaDestinoIndex];
+    contaDestino.saldo += valor;
+
+    const usersJSON = JSON.stringify(users, null, 2);
+    fs.writeFileSync(databasePath, usersJSON);
+
+    return res
+      .status(200)
+      .json({ message: "Transferência realizada com sucesso!" });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+const getSaldo = async (req, res) => {
+  try {
+    const { numeroConta, senha } = req.query;
+
+    if (!numeroConta || !senha) {
+      return res.status(400).json({
+        status: "Error",
+        message: "Número da conta e senha são obrigatórios nos query params",
+      });
+    }
+
+    const data = fs.readFileSync(databasePath, "utf-8");
+    const users = JSON.parse(data);
+
+    const contaIndex = users.findIndex(
+      (conta) => conta.numberOfConta === parseInt(numeroConta)
+    );
+
+    if (contaIndex === -1) {
+      return res
+        .status(404)
+        .json({ status: "Error", message: "Conta não encontrada" });
+    }
+
+    const conta = users[contaIndex];
+
+    if (conta.usuario.senha !== senha) {
+      return res.status(401).json({
+        status: "Error",
+        message: "Senha incorreta para a conta",
+      });
+    }
+
+    return res.status(200).json({ saldo: conta.saldo });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+const getExtrato = async (req, res) => {
+  try {
+    const { numeroConta, senha } = req.query;
+
+    if (!numeroConta || !senha) {
+      return res.status(400).json({
+        status: "Error",
+        message: "Número da conta e senha são obrigatórios nos query params",
+      });
+    }
+
+    const data = fs.readFileSync(databasePath, "utf-8");
+    const users = JSON.parse(data);
+
+    const contaIndex = users.findIndex(
+      (conta) => conta.numberOfConta === parseInt(numeroConta)
+    );
+
+    if (contaIndex === -1) {
+      return res
+        .status(404)
+        .json({ status: "Error", message: "Conta não encontrada" });
+    }
+
+    const conta = users[contaIndex];
+
+    if (conta.usuario.senha !== senha) {
+      return res.status(401).json({
+        status: "Error",
+        message: "Senha incorreta para a conta",
+      });
+    }
+
+    const extrato = {
+      depositos: [],
+      saques: [],
+      transferenciasEnviadas: [],
+      transferenciasRecebidas: [],
+    };
+
+    for (const transferencia of transferencias) {
+      if (transferencia.numeroContaOrigem === numeroConta) {
+        extrato.transferenciasEnviadas.push({
+          data: transferencia.data,
+          numero_conta_origem: transferencia.numeroContaOrigem,
+          numero_conta_destino: transferencia.numeroContaDestino,
+          valor: transferencia.valor,
+        });
+      } else if (transferencia.numeroContaDestino === numeroConta) {
+        extrato.transferenciasRecebidas.push({
+          data: transferencia.data,
+          numero_conta_origem: transferencia.numeroContaOrigem,
+          numero_conta_destino: transferencia.numeroContaDestino,
+          valor: transferencia.valor,
+        });
+      }
+    }
+
+    for (const deposito of depositos) {
+      if (deposito.numero_conta === numeroConta) {
+        extrato.depositos.push({
+          data: deposito.data,
+          numero_conta: deposito.numero_conta,
+          valor: deposito.valor,
+        });
+      }
+    }
+
+    for (const saque of saques) {
+      if (saque.numero_conta === numeroConta) {
+        extrato.saques.push({
+          data: saque.data,
+          numero_conta: saque.numero_conta,
+          valor: saque.valor,
+        });
+      }
+    }
+
+    return res.status(200).json(extrato);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
 module.exports = {
   updateUser,
   deleteUsers,
   getAllUser,
   createUser,
   deposito,
+  transferencia,
+  getSaldo,
+  getExtrato,
 };

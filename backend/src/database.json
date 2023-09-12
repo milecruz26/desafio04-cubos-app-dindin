@@ -1,1 +1,38 @@
-[]
+[
+  {
+    "numberOfConta": 1,
+    "saldo": 800,
+    "usuario": {
+      "nome": "dsd",
+      "cpf": "7624335540",
+      "data_nascimento": "2021-03-15",
+      "telefone": "71991726450",
+      "email": "nemsei@gmail.com",
+      "senha": "a1234"
+    }
+  },
+  {
+    "numberOfConta": 2,
+    "saldo": 4,
+    "usuario": {
+      "nome": "dsd",
+      "cpf": "7624336540",
+      "data_nascimento": "2021-03-15",
+      "telefone": "71991726450",
+      "email": "nemsei@gmail.com",
+      "senha": "a1234"
+    }
+  },
+  {
+    "numberOfConta": 3,
+    "saldo": 0,
+    "usuario": {
+      "nome": "dsd",
+      "cpf": "7624536540",
+      "data_nascimento": "2021-03-15",
+      "telefone": "71991726450",
+      "email": "nemsei@gmail.com",
+      "senha": "a1234"
+    }
+  }
+]
