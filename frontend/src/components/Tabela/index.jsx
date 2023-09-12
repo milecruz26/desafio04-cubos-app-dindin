@@ -10,6 +10,28 @@ import { useEffect, useState } from 'react'
 export const Tabela = ({ transacao, setTransacao }) => {
   const [idTransacao, setIdTransacao] = useState(null)
 
+  const handleData = data => {
+    const date = new Date(data).toLocaleDateString('pt-BR', { timeZone: 'UTC' })
+    return date
+  }
+
+
+  const handleGetDay = data => {
+
+    try {
+
+      const daysOfWeek = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'sábado', 'Domingo'];
+      const date = new Date(data);
+
+      let day = date.getDay();
+
+      return daysOfWeek[day];
+
+    } catch (error) {
+      return error.message;
+    }
+  };
+
   const handleDeleteItem = (event) => {
     setIdTransacao(event)
   };
@@ -49,8 +71,8 @@ export const Tabela = ({ transacao, setTransacao }) => {
         <tbody>
           {transacao.map((transacao) => (
             <tr key={transacao.id}>
-              <td>{transacao.data}</td>
-              <td>Quarta</td>
+              <td>{handleData(transacao.data)}</td>
+              <td>{handleGetDay(transacao.data)}</td>
               <td className='table-description'>{transacao.descricao}</td>
               <td className='table-category'>{transacao.categoria}</td>
               <td className='table-value'

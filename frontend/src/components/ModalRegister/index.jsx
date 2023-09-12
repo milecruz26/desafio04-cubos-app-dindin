@@ -33,7 +33,7 @@ export const ModalRegister = ({ addRegister, setAddRegister, transacao, setTrans
       id: Math.floor(Math.random() * (10000 - 1) + 1),
       valor,
       categoria,
-      data: new Date(data).toLocaleDateString('pt-BR', { timeZone: 'UTC' }),
+      data,
       descricao,
       saida
     }])
