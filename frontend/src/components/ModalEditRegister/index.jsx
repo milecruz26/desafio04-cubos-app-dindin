@@ -2,10 +2,18 @@ import '../ModalRegister/styles.css'
 import '../../global.css'
 
 import CloseIcon from '../../assets/close-icon.svg'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 
 export const ModalEditRegister = ({ editRegister, setEditRegister, transacao, setTransacao, currentRegister }) => {
+  const defaultRegister = {
+    id: 0,
+    valor: 0,
+    categoria: '',
+    data: '',
+    descricao: '',
+    saida: false
+  }
 
   const [form, setForm] = useState({
     ...currentRegister,
@@ -14,13 +22,29 @@ export const ModalEditRegister = ({ editRegister, setEditRegister, transacao, se
 
   const { valor, categoria, data, descricao, saida } = form;
 
+  useEffect(() => {
+    if (editRegister && currentRegister.id) {
 
+      const transacaoToEdition = transacao.find((transacoes) => {
+        return transacoes.id === currentRegister.id
+      }
+      )
+      return setForm({
+        valor: transacaoToEdition.valor,
+        categoria: transacaoToEdition.categoria,
+        data: transacaoToEdition.data,
+        descricao: transacaoToEdition.descricao,
+        saida: transacaoToEdition.saida
+      })
+    }
+    setForm({ ...defaultRegister })
+
+  }, [editRegister, currentRegister, transacao])
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
   }
-
 
 
   const handleClickEditRegister = () => {
@@ -50,8 +74,6 @@ export const ModalEditRegister = ({ editRegister, setEditRegister, transacao, se
 
 
   }
-
-
 
 
   const handleChangeForm = (event) => {
