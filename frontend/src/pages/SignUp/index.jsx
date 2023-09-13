@@ -10,7 +10,8 @@ export const SignUp = () => {
       <HeaderLogo isLoggedIn={false} />
 
       <main>
-        <SignUpModal />
+        <SignUpModal
+        />
       </main>
     </div>
   )

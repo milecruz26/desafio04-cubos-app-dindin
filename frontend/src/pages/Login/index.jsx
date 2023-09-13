@@ -3,6 +3,8 @@ import './styles.css'
 import { HeaderLogo } from '../../components/HeaderLogo'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { getItem } from '../../localStorage/localStorage'
+
 
 export const Login = () => {
   const [form, setForm] = useState({
@@ -24,8 +26,10 @@ export const Login = () => {
       setErro('Senha precisa ser fornecida')
       return
     }
-    if ({ ...form }) {
-      return navigate("/home")
+    if (form.email === getItem('email') && form.password === getItem('password')) {
+      navigate("/home")
+    } else {
+      alert('Usuário e senha incorretos')
     }
   }
 
@@ -45,7 +49,12 @@ export const Login = () => {
         <div className='texto-principal'>
           <h1>Controle suas <strong>finanças</strong>, sem planilha chata.</h1>
           <p>Organizar as suas finanças nunca foi tão fácil, com o DINDIN, você tem tudo num único lugar e em um clique de distância.</p>
-          <button>Cadastre-se</button>
+          <button
+            onClick={() => navigate('/sign-up')}
+            style={{ cursor: 'pointer' }}
+          >
+            Cadastre-se
+          </button>
         </div>
 
         <div className='area-login'>
