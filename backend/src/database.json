@@ -1,38 +1,50 @@
 [
   {
     "numberOfConta": 1,
-    "saldo": 800,
+    "saldo": 99.5,
     "usuario": {
       "nome": "dsd",
-      "cpf": "7624335540",
+      "cpf": "7624356540",
       "data_nascimento": "2021-03-15",
       "telefone": "71991726450",
       "email": "nemsei@gmail.com",
       "senha": "a1234"
-    }
+    },
+    "transacoes": [
+      {
+        "tipo": "Depósito",
+        "numberOfConta": 1,
+        "data": "2023-09-14T22:38:30.463Z",
+        "valor": 100.5
+      },
+      {
+        "tipo": "transferenciasEnviadas",
+        "data": "2023-09-14T22:38:40.837Z",
+        "numeroContaOrigem": 1,
+        "numeroContaDestino": 2,
+        "valor": 1
+      }
+    ]
   },
   {
     "numberOfConta": 2,
-    "saldo": 4,
+    "saldo": 1,
     "usuario": {
       "nome": "dsd",
-      "cpf": "7624336540",
+      "cpf": "7624256540",
       "data_nascimento": "2021-03-15",
       "telefone": "71991726450",
       "email": "nemsei@gmail.com",
       "senha": "a1234"
-    }
-  },
-  {
-    "numberOfConta": 3,
-    "saldo": 0,
-    "usuario": {
-      "nome": "dsd",
-      "cpf": "7624536540",
-      "data_nascimento": "2021-03-15",
-      "telefone": "71991726450",
-      "email": "nemsei@gmail.com",
-      "senha": "a1234"
-    }
+    },
+    "transacoes": [
+      {
+        "tipo": "transferenciasRecebidas",
+        "data": "2023-09-14T22:38:40.837Z",
+        "numeroContaOrigem": 1,
+        "numeroContaDestino": 2,
+        "valor": 1
+      }
+    ]
   }
 ]

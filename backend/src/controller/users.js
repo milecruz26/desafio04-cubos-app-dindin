@@ -50,7 +50,6 @@ const createUser = async (req, res) => {
       });
     }
 
-    // Atualize a variável numberOfConta com base no número de contas existentes
     const numberOfConta = users.length + 1;
 
     const newUser = {
@@ -64,6 +63,7 @@ const createUser = async (req, res) => {
         email,
         senha,
       },
+      transacoes: [],
     };
     users.push(newUser);
 
@@ -80,8 +80,14 @@ const getAllUser = async (req, res) => {
   try {
     const data = fs.readFileSync(databasePath, "utf-8");
     const users = JSON.parse(data);
+    const removeTransacoes = (conta) => {
+      const { transacoes, ...contaSemTransacoes } = conta;
+      return contaSemTransacoes;
+    };
 
-    return res.status(200).json(users);
+    const contasSemTransacoes = users.map(removeTransacoes);
+
+    return res.status(200).json(contasSemTransacoes);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -192,6 +198,15 @@ const deposito = async (req, res) => {
     const conta = users[contaIndex];
     conta.saldo += parseFloat(valor);
 
+    const transacao = {
+      tipo: "Depósito",
+      numberOfConta: conta.numberOfConta,
+      data: new Date().toISOString(),
+      valor: parseFloat(valor),
+    };
+
+    conta.transacoes.push(transacao);
+
     const usersJSON = JSON.stringify(users, null, 2);
     fs.writeFileSync(databasePath, usersJSON);
 
@@ -257,8 +272,28 @@ const transferencia = async (req, res) => {
       });
     }
 
-    contaOrigem.saldo -= valor;
     const contaDestino = users[contaDestinoIndex];
+
+    const transacaoOrigem = {
+      tipo: "transferenciasEnviadas",
+      data: new Date().toISOString(),
+      numeroContaOrigem: contaOrigem.numberOfConta,
+      numeroContaDestino: contaDestino.numberOfConta,
+      valor: parseFloat(valor),
+    };
+
+    contaOrigem.transacoes.push(transacaoOrigem);
+    contaOrigem.saldo -= valor;
+
+    const transacaoDestino = {
+      tipo: "transferenciasRecebidas",
+      data: new Date().toISOString(),
+      numeroContaOrigem: contaOrigem.numberOfConta,
+      numeroContaDestino: contaDestino.numberOfConta,
+      valor: parseFloat(valor),
+    };
+
+    contaDestino.transacoes.push(transacaoDestino);
     contaDestino.saldo += valor;
 
     const usersJSON = JSON.stringify(users, null, 2);
@@ -309,7 +344,72 @@ const getSaldo = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+const saque = async (req, res) => {
+  try {
+    const { numeroConta, valor, senha } = req.body;
 
+    if (!numeroConta || !valor || !senha) {
+      return res.status(400).json({
+        status: "Error",
+        message:
+          "Número da conta, valor do saque e senha são obrigatórios no corpo da requisição",
+      });
+    }
+
+    if (isNaN(valor) || valor <= 0) {
+      return res.status(400).json({
+        status: "Error",
+        message: "O valor do saque deve ser um número maior que zero",
+      });
+    }
+
+    const data = fs.readFileSync(databasePath, "utf-8");
+    const users = JSON.parse(data);
+
+    const contaIndex = users.findIndex(
+      (conta) => conta.numberOfConta === parseInt(numeroConta)
+    );
+
+    if (contaIndex === -1) {
+      return res
+        .status(404)
+        .json({ status: "Error", message: "Conta não encontrada" });
+    }
+
+    const conta = users[contaIndex];
+
+    if (conta.usuario.senha !== senha) {
+      return res.status(401).json({
+        status: "Error",
+        message: "Senha incorreta para a conta",
+      });
+    }
+
+    if (conta.saldo < valor) {
+      return res.status(400).json({
+        status: "Error",
+        message: "Saldo insuficiente na conta para realizar o saque",
+      });
+    }
+
+    const transacao = {
+      tipo: "Saque",
+      numberOfConta: conta.numberOfConta,
+      data: new Date().toISOString(),
+      valor: parseFloat(valor),
+    };
+
+    conta.transacoes.push(transacao);
+    conta.saldo -= valor;
+
+    const usersJSON = JSON.stringify(users, null, 2);
+    fs.writeFileSync(databasePath, usersJSON);
+
+    return res.status(200).json({ message: "Saque realizado com sucesso!" });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
 const getExtrato = async (req, res) => {
   try {
     const { numeroConta, senha } = req.query;
@@ -343,56 +443,14 @@ const getExtrato = async (req, res) => {
       });
     }
 
-    const extrato = {
-      depositos: [],
-      saques: [],
-      transferenciasEnviadas: [],
-      transferenciasRecebidas: [],
-    };
+    const transacoes = conta.transacoes;
 
-    for (const transferencia of transferencias) {
-      if (transferencia.numeroContaOrigem === numeroConta) {
-        extrato.transferenciasEnviadas.push({
-          data: transferencia.data,
-          numero_conta_origem: transferencia.numeroContaOrigem,
-          numero_conta_destino: transferencia.numeroContaDestino,
-          valor: transferencia.valor,
-        });
-      } else if (transferencia.numeroContaDestino === numeroConta) {
-        extrato.transferenciasRecebidas.push({
-          data: transferencia.data,
-          numero_conta_origem: transferencia.numeroContaOrigem,
-          numero_conta_destino: transferencia.numeroContaDestino,
-          valor: transferencia.valor,
-        });
-      }
-    }
-
-    for (const deposito of depositos) {
-      if (deposito.numero_conta === numeroConta) {
-        extrato.depositos.push({
-          data: deposito.data,
-          numero_conta: deposito.numero_conta,
-          valor: deposito.valor,
-        });
-      }
-    }
-
-    for (const saque of saques) {
-      if (saque.numero_conta === numeroConta) {
-        extrato.saques.push({
-          data: saque.data,
-          numero_conta: saque.numero_conta,
-          valor: saque.valor,
-        });
-      }
-    }
-
-    return res.status(200).json(extrato);
+    return res.status(200).json({ transacoes });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
+
 module.exports = {
   updateUser,
   deleteUsers,
@@ -402,4 +460,5 @@ module.exports = {
   transferencia,
   getSaldo,
   getExtrato,
+  saque,
 };
