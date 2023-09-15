@@ -117,6 +117,7 @@ export const ModalRegister = ({ addRegister, setAddRegister, transacao, setTrans
                 id='data'
                 name='data'
                 type="date"
+                max="9999-12-31"
                 value={form.data}
                 onChange={(event) => handleChangeForm(event, 'data')} />
 

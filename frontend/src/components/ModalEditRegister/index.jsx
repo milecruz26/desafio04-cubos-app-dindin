@@ -144,48 +144,13 @@ export const ModalEditRegister = ({ editRegister, setEditRegister, transacao, se
                   </option>
                 ))}
               </select>
-              {/* <select
-                id='categoria'
-                name='categoria'
-                className='categoria'
-                value={form.categoria}
-                onChange={(event) => handleChangeForm(event, 'categoria')}>
-                <option
-                  value="Alimentação">
-                  Alimentação
-                </option>
-
-                <option
-                  value="Assinaturas">
-                  Assinaturas e Serviços
-                </option>
-
-                <option
-                  value="Casa">
-                  Casa
-                </option>
-
-                <option
-                  value="Compras">
-                  Compras
-                </option>
-
-                <option
-                  value="Cuidados Pessoais">
-                  Cuidados pessoais
-                </option>
-
-                <option
-                  value="Educação">
-                  Educação
-                </option>
-              </select> */}
 
               <label htmlFor="data" >Data</label>
               <input
                 id='data'
                 name='data'
                 type="date"
+                max="9999-12-31"
                 value={form.data}
                 onChange={(event) => handleChangeForm(event, 'data')} />
 
