@@ -1,6 +1,7 @@
 import './styles.css'
 import CloseIcon from '../../assets/close-icon.svg'
 
+
 export const ModalPerfilEdit = ({ editPerfil, setEditPerfil }) => {
 
 

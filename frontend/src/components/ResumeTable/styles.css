@@ -1,83 +1,71 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-
 .resume {
-  width: 14.75rem;
-  height: 12.25rem;
-  border-radius: 0.625rem;
+  width: 236px;
+  height: 196px;
+
+  border-radius: 10px;
   box-shadow: 0px 2px 11px 0px rgba(0, 0, 0, 0.10);
   background: #FAFAFA;
 
   display: flex;
+  justify-content: space-evenly;
+}
 
+.resume hr {
+  margin: 0 auto;
+  width: 170px;
+  height: 1px;
+  background-color: #EAEAEA;
+  border-style: none;
+}
+
+.container-txt-h2-resume {
+  margin: 0 auto;
+  width: 170px;
+}
+
+.container-txt-h2-resume h2 {
+  color: #2F2F2F;
+  font-family: var(--font-family-rubik);
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .table-resume {
-  margin: 1rem;
+  margin: 0 auto;
+  width: 170px;
   display: flex;
   flex-direction: column;
-  text-align: justify;
-}
-
-.table-resume h2 {
-  height: 2rem;
-  color: #2F2F2F;
-  font-family: var(--font-family-rubik);
-  font-size: 1.125rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 21.33px;
-}
-
-.table-resume hr {
-  width: 11.8125rem;
-  background: #EAEAEA;
-  height: 0.0625rem;
-  border: 0.06rem;
-  margin: 1.19rem 0;
-}
-
-.table-resume td,
-tr {
-  height: 2rem;
-  width: 11rem;
+  text-align: left;
 }
 
 .table-resume tr,
 td {
+  height: 32px;
+  width: 170px;
+
   color: #2F2F2F;
   font-family: var(--font-family-rubik);
   font-size: 0.8125rem;
-  font-style: normal;
   font-weight: 500;
-  line-height: normal;
-  border-bottom: none;
 }
 
 .table-resume td {
   text-align: right;
 }
 
-.table-resume .saldo {
-  font-weight: 700;
-  font-size: 0.875rem;
+.entrace {
+  color: #645FFB;
 }
 
-.container button {
-  width: 14.75rem;
-  height: 2.875rem;
-  border-radius: 0.3125rem;
-  background-color: var(--color-purple);
-  border: none;
-  cursor: pointer;
+.balance {
+  color: #3A9FF1;
+}
 
-  color: #FFF;
-  font-family: var(--font-family-rubik);
-  font-size: 0.875rem;
-  font-style: normal;
+.balance-txt {
   font-weight: 700;
+  font-size: 14px;
+}
+
+.exit {
+  color: #FA8C10;
 }

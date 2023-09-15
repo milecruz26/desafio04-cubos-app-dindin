@@ -3,13 +3,13 @@ import '../../global.css'
 
 import CloseIcon from '../../assets/close-icon.svg'
 import { useEffect, useState } from 'react'
+import { categories } from '../../categories/categories'
 
 
 export const ModalEditRegister = ({ editRegister, setEditRegister, transacao, setTransacao, currentRegister }) => {
   const defaultRegister = {
     id: 0,
     valor: 0,
-    categoria: '',
     data: '',
     descricao: '',
     saida: false
@@ -18,7 +18,7 @@ export const ModalEditRegister = ({ editRegister, setEditRegister, transacao, se
   const [form, setForm] = useState({
     ...currentRegister,
   })
-
+  const [select, setSelect] = useState({ id: categories[0].id, name: categories[0].name })
 
   const { valor, categoria, data, descricao, saida } = form;
 
@@ -49,30 +49,34 @@ export const ModalEditRegister = ({ editRegister, setEditRegister, transacao, se
 
   const handleClickEditRegister = () => {
 
-    try {
-      const updatedTransaction = {
-        ...currentRegister,
-        valor,
-        categoria,
-        data,
-        descricao,
-        saida,
-      };
+    const updatedTransaction = {
+      ...currentRegister,
+      valor,
+      categoria,
+      data,
+      descricao,
+      saida,
+    };
 
-      const newTransaction = transacao.map((transaction) => {
-        if (transaction.id === currentRegister.id) {
-          return updatedTransaction;
-        }
-        return transaction;
-      });
+    const newTransaction = transacao.map((transaction) => {
+      if (transaction.id === currentRegister.id) {
+        return updatedTransaction;
+      }
+      return transaction;
+    });
 
-      setTransacao(newTransaction);
-      setEditRegister(false);
-    } catch (error) {
-      return error.message;
-    }
+    setTransacao(newTransaction);
+    setEditRegister(false);
+
+  }
 
 
+  const handleChangeSelect = (event) => {
+    const selectedCategoryId = Number(event.target.value);
+    const selectedCategory = categories.find((item) => item.id === selectedCategoryId);
+
+    setSelect({ id: selectedCategoryId, name: selectedCategory.name });
+    setForm({ ...form, categoria: selectedCategory.name });
   }
 
 
@@ -117,6 +121,7 @@ export const ModalEditRegister = ({ editRegister, setEditRegister, transacao, se
 
               <label htmlFor="valor">Valor</label>
               <input
+                id='valor'
                 name='valor'
                 type="number"
                 value={valor}
@@ -124,6 +129,23 @@ export const ModalEditRegister = ({ editRegister, setEditRegister, transacao, se
 
               <label htmlFor="categoria">Categoria</label>
               <select
+                id='categoria'
+                name='categoria'
+                className='categoria'
+                value={select.id}
+                onChange={(event) => handleChangeSelect(event)}>
+
+                {categories.map((item) => (
+                  <option
+                    key={item.id}
+                    value={item.id}
+                  >
+                    {item.name}
+                  </option>
+                ))}
+              </select>
+              {/* <select
+                id='categoria'
                 name='categoria'
                 className='categoria'
                 value={form.categoria}
@@ -157,10 +179,11 @@ export const ModalEditRegister = ({ editRegister, setEditRegister, transacao, se
                   value="Educação">
                   Educação
                 </option>
-              </select>
+              </select> */}
 
               <label htmlFor="data" >Data</label>
               <input
+                id='data'
                 name='data'
                 type="date"
                 value={form.data}
@@ -168,6 +191,7 @@ export const ModalEditRegister = ({ editRegister, setEditRegister, transacao, se
 
               <label htmlFor="descricao">Descrição</label>
               <input
+                id='descricao'
                 name='descricao'
                 type="text"
                 value={form.descricao}
