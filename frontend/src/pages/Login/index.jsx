@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { getItem } from '../../localStorage/localStorage'
 
 
-export const Login = () => {
+export const Login = ({ setIsAuthenticated }) => {
   const [form, setForm] = useState({
     email: '',
     password: ''
@@ -27,6 +27,7 @@ export const Login = () => {
       return
     }
     if (form.email === getItem('email') && form.password === getItem('password')) {
+      setIsAuthenticated(true)
       navigate("/home")
     } else {
       alert('Usuário e senha incorretos')

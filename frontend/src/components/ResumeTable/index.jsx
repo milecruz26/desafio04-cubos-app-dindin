@@ -29,22 +29,30 @@ export const ResumeTable = ({ transacao }) => {
   return (
 
     <div className='resume'>
-      <table className='table-resume'>
+      <div className='container-txt-h2-resume'>
         <h2>Resumo</h2>
-        <tr>
-          <th scope='row'>Entradas</th>
-          <td className='entrace'>R${entrada}</td>
-        </tr>
+      </div>
+      <table className='table-resume'>
+        <tbody className='tbody'>
+          <tr>
+            <th scope='row' className='entrace-txt'>Entradas</th>
+            <td className='entrace'>R$ {entrada}</td>
+          </tr>
 
-        <tr>
-          <th scope='row' >Saídas</th>
-          <td className='exit'>R$ {exit}</td>
-        </tr>
-        <hr />
-        <tr>
-          <th scope='row' className='balance-txt'>Saldo</th>
-          <td className='balance'>R${saldo.toFixed(2)}</td>
-        </tr>
+          <tr>
+            <th scope='row' className='exit-txt' >Saídas</th>
+            <td className='exit'>R$ {exit}</td>
+          </tr>
+        </tbody>
+      </table>
+      <hr />
+      <table className='table-resume'>
+        <tbody >
+          <tr>
+            <th scope='row' className='balance-txt'>Saldo</th>
+            <td className='balance'>R$ {saldo.toFixed(2)}</td>
+          </tr>
+        </tbody>
       </table>
     </div>
 

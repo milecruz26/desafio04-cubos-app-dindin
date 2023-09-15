@@ -3,84 +3,72 @@ import './styles.css'
 import '../../../src/global.css'
 import EditIcon from '../../assets/icons-8-editar-3.svg'
 import TrashIcon from '../../assets/icons-8-lixo-1.svg'
+import Triangulo from '../../assets/triangulo.svg'
 import { useEffect, useState } from 'react'
 
 
 
-export const Tabela = ({ transacao, setTransacao, setEditRegister, currentRegister, setCurrentRegister }) => {
+export const Tabela = ({ transacao, setTransacao, setEditRegister, setCurrentRegister }) => {
   const [idTransacao, setIdTransacao] = useState(null)
+  const [idEditTransacao, setIdEditTransacao] = useState(null)
 
   const handleData = data => {
     const date = new Date(data).toLocaleDateString('pt-BR', { timeZone: 'UTC' })
     return date
   }
 
-
   const handleGetDay = data => {
 
-    try {
+    const daysOfWeek = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'sábado', 'Domingo'];
+    const date = new Date(data);
 
-      const daysOfWeek = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'sábado', 'Domingo'];
-      const date = new Date(data);
+    let day = date.getDay();
 
-      let day = date.getDay();
-
-      return daysOfWeek[day];
-
-    } catch (error) {
-      return error.message;
-    }
+    return daysOfWeek[day];
   };
 
   const handleDeleteItem = (event) => {
     setIdTransacao(event)
+  };
+
+  const handleEditRegister = (event) => {
+    setIdEditTransacao(event);
+    setEditRegister(true);
+  }
+
+  useEffect(() => {
     if (idTransacao !== null) {
       setTransacao(transacao.filter((transacao) => transacao.id !== idTransacao
       ));
       setIdTransacao(null)
     }
-  };
 
-  const handleEditRegister = (event) => {
-    setIdTransacao(event);
-    setEditRegister(true);
-
-    if (idTransacao !== null) {
-      setCurrentRegister(transacao.find((t) => t.id === event));
+    if (idEditTransacao !== null) {
+      setCurrentRegister(transacao.find((transacao) => transacao.id === idEditTransacao));
     }
 
-  }
-
-  // useEffect(() => {
-  //   if (idTransacao !== null) {
-  //     setTransacao(transacao.filter((transacao) => transacao.id !== idTransacao
-  //     ));
-  //     setIdTransacao(null)
-  //   }
-
-
-  // }, [idTransacao, setTransacao])
+  }, [idTransacao, setTransacao, setCurrentRegister, idEditTransacao])
 
   return (
 
-    <div className='table'>
+    <div className='container-table'>
       <table>
-        <colgroup>
-          <col className='datas' />
-          <col />
-          <col />
-          <col />
-          <col />
-        </colgroup>
         <thead>
           <tr>
-            <th scope='col'>Data</th>
+            <th scope='col'
+              className='data-th-txt'>
+              Data
+              <img
+                src={Triangulo}
+                alt='icone reorganizar por data' />
+            </th>
+
             <th>Dia da Semana</th>
             <th>Descrição</th>
             <th>Categoria</th>
             <th>Valor</th>
-            <th style={{ width: '5rem' }}></th>
-            <th style={{ width: '5rem' }}></th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -90,15 +78,17 @@ export const Tabela = ({ transacao, setTransacao, setEditRegister, currentRegist
               <td>{handleGetDay(transacao.data)}</td>
               <td className='table-description'>{transacao.descricao}</td>
               <td className='table-category'>{transacao.categoria}</td>
-              <td className='table-value'
-                style={transacao.saida ? { color: '#FA8C10' } : { color: '#7B61FF' }}
-              >R$ {transacao.valor}</td>
+              <td
+                className='col-value'
+                style={!transacao.saida ? { color: '#7B61FF' } : { color: '#FA8C10' }}>
+                R$ {transacao.valor}
+              </td>
               <td className='edit-icon'>
-                <img src={EditIcon} alt="editar"
+                <img src={EditIcon} alt="ícone de editar"
                   style={{ cursor: 'pointer' }}
                   onClick={() => handleEditRegister(transacao.id)}
                 />
-                <img src={TrashIcon} alt="deletar"
+                <img src={TrashIcon} alt="ícone de deletar"
                   style={{ marginLeft: '13px', cursor: 'pointer' }}
                   onClick={() => handleDeleteItem(transacao.id)} />
               </td>

@@ -4,8 +4,10 @@ import Logo from '../../assets/logo.svg'
 import ProfileIcon from '../../assets/profile-icon.svg'
 import ExitIcon from '../../assets/logout-icon.svg'
 import { ModalPerfilEdit } from '../ModalPerfilEdit'
-import { useState } from 'react'
+import { getItem, removeItem } from '../../localStorage/localStorage'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 
 
 
@@ -13,13 +15,19 @@ export const HeaderLogo = ({ isLoggedIn }) => {
   const [editPerfil, setEditPerfil] = useState(false);
   const [logout, setLogout] = useState(false);
   const navigate = useNavigate()
+  const name = getItem('name')
+  const user = ['name', 'password', 'email']
 
-  const handleClickLogout = () => {
-    setLogout(true)
+  useEffect(() => {
     if (logout) {
-      return navigate('/login')
+      removeItem('user')
+      user.forEach((key) => {
+        removeItem(key);
+      });
+      return navigate('/')
     }
-  }
+  }, [logout])
+
   return (
 
     <header>
@@ -30,10 +38,10 @@ export const HeaderLogo = ({ isLoggedIn }) => {
           alt="Perfil"
           onClick={() => setEditPerfil(true)}
         />
-        <strong>Jamile</strong>
+        <strong>{name}</strong>
         <img
           src={ExitIcon} alt="Sair"
-          onClick={handleClickLogout}
+          onClick={() => setLogout(true)}
         />
       </div> : null}
 

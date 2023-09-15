@@ -13,7 +13,7 @@ export const SignUpModal = () => {
     passwordConfirm: ''
   })
 
-  const { name, email, password } = form
+  const { name, email, password, passwordConfirm } = form
 
 
   const handleSubmitForm = (event) => {
@@ -22,7 +22,8 @@ export const SignUpModal = () => {
       setItem('name', name);
       setItem('email', email);
       setItem('password', password);
-      navigate('/login')
+      setItem('passwordConfirm', passwordConfirm);
+      navigate('/')
 
     }
   }
@@ -34,9 +35,11 @@ export const SignUpModal = () => {
   const handleClickSubmit = () => {
     if (form.password !== form.passwordConfirm) {
       alert('As senhas digitas não coincidem')
+      return
     }
     if (form.password.length < 8) {
       alert('A senha deve possuir mais do que 8 caracteres')
+      return
     }
   }
 
@@ -86,7 +89,7 @@ export const SignUpModal = () => {
 
         <button type="submit" onClick={handleClickSubmit}>Cadastrar</button>
       </form>
-      <p>Já tem cadastro? <span onClick={() => navigate('/login')}>Clique aqui</span></p>
+      <p>Já tem cadastro? <span onClick={() => navigate('/')}>Clique aqui</span></p>
 
     </div>
 
