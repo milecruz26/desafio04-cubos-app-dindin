@@ -1,0 +1,9 @@
+.body-login-signup {
+
+  background: url('../../assets/wallpaper.svg'), lightgray 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  min-height: 100vh;
+  width: 100%;
+}

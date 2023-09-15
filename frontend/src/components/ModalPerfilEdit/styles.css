@@ -1,0 +1,77 @@
+.container-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+.container-form-edit {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 611px;
+  height: 770px;
+  background-color: white;
+  padding: 60px;
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  gap: 25px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.line-title {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.line-title h1 {
+  color: #000;
+  font-family: var(--font-family-rubik);
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+
+.form-edit {
+  width: 489px;
+  gap: 10px;
+}
+
+.form-edit label {
+  margin-top: 10px;
+  color: #484848;
+  font-family: var(--font-family-rubik);
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.form-edit input {
+  padding-left: 10px;
+  width: 485px;
+  height: 63.486px;
+  border-radius: 5px;
+  border: 1px solid #555;
+  background: #FFF;
+
+  font-family: var(--font-family-rubik);
+  font-size: 18px;
+  font-weight: 400;
+
+}
+
+.form-edit button {
+  margin: 35px auto;
+  width: 236px;
+  height: 42px;
+  flex-shrink: 0;
+}

@@ -1,0 +1,113 @@
+main div {
+  display: flex;
+  flex-direction: column;
+}
+
+.texto-principal {
+  height: 350px;
+  width: 614px;
+  gap: 33px
+}
+
+.texto-principal h1 {
+  color: #FFF;
+  font-family: var(--font-family-rubik);
+  font-size: 52px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.texto-principal p {
+  color: #FFF;
+  font-family: var(--font-family-rubik);
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.texto-principal strong {
+  color: var(--color-purple);
+}
+
+.texto-principal button {
+  width: 284px;
+  height: 48px;
+  border-radius: 5px;
+  background-color: var(--color-purple);
+  border: none;
+
+  color: #FFF;
+  font-family: var(--font-family-rubik);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.area-login {
+  height: 535px;
+  width: 513px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.area-login h3 {
+  margin: 50px auto;
+  color: var(--color-purple);
+  font-family: var(--font-family-rubik);
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+form {
+
+  height: 380px;
+  width: 449px;
+
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  gap: 20px
+}
+
+label {
+
+  color: var(--color-gray);
+  font-family: var(--font-family-rubik);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+input {
+  border-radius: 5px;
+  border: 1px solid #555;
+  background: #FFF;
+  width: 449px;
+  height: 63px;
+  flex-shrink: 0;
+}
+
+form button {
+  width: 449px;
+  margin-top: 50px;
+  height: 52px;
+  border-radius: 5px;
+  border: none;
+
+  background: var(--color-purple);
+  font-family: var(--font-family-rubik);
+  font-weight: 700;
+  font-size: 14px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.erroMensagem {
+  color: #e60101;
+}

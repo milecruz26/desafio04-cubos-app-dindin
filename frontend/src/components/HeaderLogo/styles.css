@@ -1,0 +1,22 @@
+.profile-area {
+  width: 138px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.profile-area img {
+  cursor: pointer;
+}
+
+.profile-area strong {
+  margin-right: 16px;
+  color: #FFF;
+  text-align: center;
+  font-family: var(--font-family-rubik);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
